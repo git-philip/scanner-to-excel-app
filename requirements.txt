@@ -3,3 +3,4 @@ img2table==1.2.11
 opencv-python-headless==4.8.1.78
 numpy==1.26.2
 gunicorn==21.2.0
+requests==2.31.0
