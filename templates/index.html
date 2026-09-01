@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Scanner to Excel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Scan to Excel</h1>
+        <p>Upload a photo or scan of a document, and we will convert it into a structured spreadsheet.</p>
+
+        <!-- Catch and display backend errors -->
+        {% if error %}
+        <div class="error-box">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <div class="upload-box">
+            <form action="/upload" method="POST" enctype="multipart/form-data" onsubmit="showLoading()">
+                <input type="file" name="document" accept="image/png, image/jpeg, application/pdf" required>
+                <br>
+                <button type="submit" id="submit-btn">Convert to Excel</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            Scanner to Excel App
+        </div>
+    </footer>
+
+    <script>
+        function showLoading() {
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'Processing... Please wait';
+            btn.style.backgroundColor = '#6c757d';
+            
+            setTimeout(() => {
+                btn.disabled = true;
+            }, 10);
+            
+            setTimeout(() => {
+                btn.innerText = 'Convert to Excel';
+                btn.style.backgroundColor = '#28a745';
+                btn.disabled = false;
+            }, 10000);
+        }
+    </script>
+</body>
+</html>
